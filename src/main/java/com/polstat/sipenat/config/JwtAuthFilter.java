@@ -3,6 +3,7 @@ package com.polstat.sipenat.config;
 
 import com.polstat.sipenat.service.CustomUserDetailsService;
 import com.polstat.sipenat.util.JwtUtil;
+import jakarta.servlet.ServletException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
