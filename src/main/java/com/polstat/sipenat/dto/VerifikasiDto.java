@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class VerifikasiDto {
     private Long id;
 
-    @NotNull(message = "ID Pengajuan wajib diisi")
+
     private Long pengajuanId;
 
     private String nomorPengajuan;
