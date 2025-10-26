@@ -9,7 +9,10 @@ import lombok.*;
 @AllArgsConstructor
 public class AuthResponse {
     private String token;
+
+    @Builder.Default
     private String type = "Bearer";
+
     private String email;
     private String username;
     private String fullName;

@@ -1,4 +1,3 @@
-// service/CustomUserDetailsService.java
 package com.polstat.sipenat.service;
 
 import com.polstat.sipenat.entity.User;
@@ -11,12 +10,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User u = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User tidak ditemukan"));
+    public UserDetails loadUserByUsername(String emailOrUsername) throws UsernameNotFoundException {
+        User u = userRepository.findByEmail(emailOrUsername)
+                .orElseGet(() -> userRepository.findByUsername(emailOrUsername)
+                        .orElseThrow(() -> new UsernameNotFoundException("User tidak ditemukan")));
+
         return org.springframework.security.core.userdetails.User.builder()
-                .username(u.getUsername())
+                .username(u.getEmail())
                 .password(u.getPassword())
                 .roles(u.getRole().name())
                 .build();
